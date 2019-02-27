@@ -6,8 +6,8 @@ import pygame
 import time 
 
 bg = turtle.Screen()
-bg.register_shape("bg.gif")
-bg.bgpic("bg.gif")
+bg.register_shape("bgp.gif")
+bg.bgpic("bgp.gif")
 
 
 turtle.setup(1920,1020)
@@ -15,6 +15,12 @@ screen = turtle.Screen()
 turtle.tracer(0)
 turtle.register_shape("dinosarusRight.gif")
 turtle.register_shape("dinosarus.gif")
+
+egg = turtle.Turtle()
+egg.penup()
+turtle.register_shape("egg.gif")
+egg.goto(0,-450)
+egg.shape("egg.gif")
 
 class Player(Turtle):
  	def __init__(self):
@@ -73,19 +79,19 @@ player.goto(0,500)
 dinos = []
 for i in range(0,24):
 	if(i <= 5):
-		dinos.append(Dino(0.5,-860+(i*360),300))
+		dinos.append(Dino(1,-860+(i*360),300))
 		dinos[i].shape("dinosarusRight.gif")
 		dinos[i].shapesize(68,50)
 	elif(i <= 12):
-		dinos.append(Dino(-0.5,-860+(i*360 - 6*360),100))
+		dinos.append(Dino(-1,-860+(i*360 - 6*360),100))
 		dinos[i].shape("dinosarus.gif")
 		dinos[i].shapesize(68,50)
 	elif(i <= 18):
-		dinos.append(Dino(0.5,-860+(i*360 - 13*360),-100))
+		dinos.append(Dino(1,-860+(i*360 - 13*360),-100))
 		dinos[i].shape("dinosarusRight.gif")
 		dinos[i].shapesize(68,50)
 	else:
-		dinos.append(Dino(-0.5,-860+(i*360 - 19*360),-300))
+		dinos.append(Dino(-1,-860+(i*360 - 19*360),-300))
 		dinos[i].shape("dinosarus.gif")
 		dinos[i].shapesize(68,50)
 all_objects = []
@@ -136,6 +142,7 @@ while(True):
  		i.move()
  	turtle.update()
  	if (Dino_collision(player,dinos) == True):
+
  		break
  	if	check_win(player):
  		turtle.write(" you win " ,align="center",font=("Fixedsys", 20, 'bold'))
